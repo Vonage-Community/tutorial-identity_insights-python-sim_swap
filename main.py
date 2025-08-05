@@ -2,17 +2,21 @@
 import requests
 from dotenv import load_dotenv
 import os
-from jwt_helper import generate_jwt
-import json
+from vonage_jwt import JwtClient
 
 load_dotenv()
 
 API_URL = "https://api-eu.vonage.com/v0.1/identity-insights"
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 DEFAULT_HOURS = int(os.getenv("DEFAULT_HOURS"))
+application_id = os.getenv("VONAGE_APPLICATION_ID")
+private_key_path = os.getenv("VONAGE_PRIVATE_KEY_PATH")  # Path to your private key file
+
+jwt_client = JwtClient(application_id, private_key_path)
 
 def check_sim_swap(phone_number, hours):
-    jwt_token = generate_jwt()
+
+    jwt_token = jwt_client.generate_application_jwt()
 
     headers = {
         "Authorization": f"Bearer {jwt_token}",
