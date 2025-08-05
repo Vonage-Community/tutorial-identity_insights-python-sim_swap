@@ -10,7 +10,7 @@ API_URL = "https://api-eu.vonage.com/v0.1/identity-insights"
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 DEFAULT_HOURS = int(os.getenv("DEFAULT_HOURS"))
 application_id = os.getenv("VONAGE_APPLICATION_ID")
-private_key_path = os.getenv("VONAGE_PRIVATE_KEY_PATH")  # Path to your private key file
+private_key_path = os.getenv("VONAGE_PRIVATE_KEY_PATH")
 
 jwt_client = JwtClient(application_id, private_key_path)
 
